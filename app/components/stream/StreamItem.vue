@@ -21,6 +21,7 @@ defineProps({
         size="sm"
         :to="stream.homepage"
         target="_blank"
+        aria-label="Open stream homepage"
         class="p-0"
       />
       <!-- TODO: use votes & tags -->

@@ -11,6 +11,7 @@
 
     <UButton
       to="https://github.com/smarroufin/radio"
+      aria-label="Open on GitHub"
       target="_blank"
       color="white"
       variant="link"
