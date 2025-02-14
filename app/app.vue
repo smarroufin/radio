@@ -14,7 +14,7 @@ const streams = computed(() => {
   return data.value
     .map(stream => ({
       ...stream,
-      pinned: pins.value.has(stream.changeuuid),
+      pinned: pins.value.has(stream.stationuuid),
     }))
     .sort((a, b) => (a.pinned ? 0 : 1) - (b.pinned ? 0 : 1))
 })
@@ -33,7 +33,7 @@ const streams = computed(() => {
           <div class="divide-y divide-neutral-900">
             <StreamItem
               v-for="stream in streams"
-              :key="stream.changeuuid"
+              :key="stream.stationuuid"
               :stream="stream"
             />
           </div>
