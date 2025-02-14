@@ -1,5 +1,5 @@
 <script setup lang="ts">
-defineProps({
+const props = defineProps({
   country: {
     type: String,
     required: true,
@@ -10,17 +10,14 @@ defineProps({
   },
 })
 
-function getFlagEmoji(countryCode: string) {
-  const codePoints = countryCode
-    .toUpperCase()
-    .split('')
-    .map(char => 127397 + char.charCodeAt(0))
-  return String.fromCodePoint(...codePoints)
-}
+const name = computed(() => `i-circle-flags-${props.countryCode.toLowerCase() || 'xx'}`)
 </script>
 
 <template>
   <UTooltip :text="country || countryCode || 'Unknown'">
-    <span>{{ getFlagEmoji(countryCode) || '&#x1F3F3;' }}</span>
+    <UIcon
+      :name="name"
+      class="size-5"
+    />
   </UTooltip>
 </template>

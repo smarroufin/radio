@@ -30,6 +30,7 @@ const tags = computed(() => {
         <AppCountryFlag
           :country="stream.country"
           :country-code="stream.countrycode"
+          class="flex-shrink-0"
         />
         <span
           v-for="tag of tags"
