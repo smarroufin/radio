@@ -1,8 +1,15 @@
 export default defineCachedEventHandler(async () => {
-  const urls = await cachedRadioBrowserHosts()
-  const url = urls[Math.floor(Math.random() * urls.length)]
-  const data = (await $fetch(`${url}/json/stations?order=votes&limit=50&reverse=true`)) as RadioBrowserStream[]
-  return data.sort((a, b) => b.votes - a.votes)
+  const hosts = await cachedRadioBrowserHosts()
+  const host = hosts[Math.floor(Math.random() * hosts.length)]
+  return $fetch<RadioBrowserStream[]>('/stations', {
+    baseURL: `${host}/json`,
+    query: {
+      hidebroken: true,
+      limit: 100,
+      order: 'votes',
+      reverse: true,
+    },
+  })
 }, {
   maxAge: 3600,
 })
