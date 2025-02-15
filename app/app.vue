@@ -23,27 +23,26 @@ const streams = computed(() => {
 <template>
   <UApp>
     <NuxtLoadingIndicator color="#FD9A00" />
-    <div class="relative">
-      <AppHeader />
-      <main class="min-h-[calc(100vh-var(--ui-header-height))]">
-        <UContainer class="w-full py-4">
-          <h2 class="text-lg font-semibold mb-4">
-            Popular Streams
-          </h2>
-          <div class="divide-y divide-neutral-900">
-            <StreamItem
-              v-for="stream in streams"
-              :key="stream.stationuuid"
-              :stream="stream"
-            />
-          </div>
-        </UContainer>
-      </main>
-      <AppFooter />
+    <AppHeader />
+    <UContainer
+      as="main"
+      class="min-h-[calc(100vh-var(--ui-header-height))] w-full py-4"
+    >
+      <h2 class="text-lg font-semibold mb-4">
+        Popular Streams
+      </h2>
+      <div class="divide-y divide-neutral-900">
+        <StreamItem
+          v-for="stream in streams"
+          :key="stream.stationuuid"
+          :stream="stream"
+        />
+      </div>
+    </UContainer>
+    <AppFooter />
 
-      <ClientOnly>
-        <AppPlayer />
-      </ClientOnly>
-    </div>
+    <ClientOnly>
+      <AppPlayer />
+    </ClientOnly>
   </UApp>
 </template>

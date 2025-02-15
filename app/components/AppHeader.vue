@@ -3,11 +3,13 @@
     as="header"
     class="flex items-center justify-between h-12"
   >
-    <img
+    <NuxtImg
       src="/icon.png"
-      alt="app logo"
-      class="h-8 w-8"
-    >
+      alt="logo"
+      width="32"
+      height="32"
+      loading="lazy"
+    />
 
     <UButton
       to="https://github.com/smarroufin/radio"

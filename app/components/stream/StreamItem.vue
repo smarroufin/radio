@@ -12,7 +12,7 @@ const tags = computed(() => {
 </script>
 
 <template>
-  <div class="flex items-center gap-4 py-1">
+  <div class="flex items-center gap-2 py-1">
     <div class="flex-1 min-w-0 flex flex-col gap-1">
       <div class="flex items-center gap-2">
         <span class="flex-shrink font-medium truncate">{{ stream.name }}</span>
@@ -39,9 +39,7 @@ const tags = computed(() => {
         >{{ tag }}</span>
       </div>
     </div>
-    <div class="flex items-center gap-2">
-      <StreamPinButton :stream="stream" />
-      <StreamPlayButton :stream="stream" />
-    </div>
+    <StreamPinButton :stream="stream" />
+    <StreamPlayButton :stream="stream" />
   </div>
 </template>
