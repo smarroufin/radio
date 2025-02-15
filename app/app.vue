@@ -1,6 +1,10 @@
 <script setup lang="ts">
+const { stream } = usePlayer()
+const title = computed(() => {
+  return [stream.value?.name, 'Radio'].filter(i => !!i).join(' - ')
+})
 useSeoMeta({
-  title: 'Radio',
+  title,
   description: 'Open music streams for everyone',
 })
 
