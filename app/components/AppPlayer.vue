@@ -8,6 +8,8 @@ onMounted(() => {
   })
 })
 
+const securedSrc = computed(() => stream.value?.url_resolved.replace('http://', 'https://'))
+
 defineShortcuts({
   k: () => togglePlay(),
   m: () => toggleMute(),
@@ -70,7 +72,7 @@ defineShortcuts({
 
     <audio
       ref="audio"
-      :src="stream?.url_resolved"
+      :src="securedSrc"
       class="hidden"
       tabindex="-1"
     />
