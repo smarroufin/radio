@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const { stream } = usePlayer()
+const { stream: currentStream } = usePlayer()
 const title = computed(() => {
-  return [stream.value?.name, 'Radio'].filter(i => !!i).join(' - ')
+  return [currentStream.value?.name, 'Radio'].filter(i => !!i).join(' - ')
 })
 useSeoMeta({
   title,
