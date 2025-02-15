@@ -1,6 +1,8 @@
 export const usePlayer = createSharedComposable(() => {
   const audioRef: Ref<HTMLAudioElement | null> = ref(null)
   const playWhenLoaded = ref(false)
+  const pausedStreamUrl = ref<string | null>(null)
+  const forcingResume = ref(false)
   const stream = useLocalStorage<RadioBrowserStream | null>('radio-player-stream', () => null, {
     serializer: {
       read: (v: string) => v ? JSON.parse(v) : null,
@@ -39,6 +41,22 @@ export const usePlayer = createSharedComposable(() => {
           playWhenLoaded.value = false
         }
       }
+      audioRef.value.onpause = () => {
+        pausedStreamUrl.value = stream.value?.url_resolved || null
+      }
+      audioRef.value.onplay = () => {
+        if (pausedStreamUrl.value === stream.value?.url_resolved && !forcingResume.value) {
+          // resuming same stream => force resume live
+          // https://stackoverflow.com/q/27258169/3926832
+          forcingResume.value = true
+          const lastStream = stream.value
+          stream.value = null
+          nextTick(() => play(lastStream))
+        }
+      }
+      audioRef.value.onplaying = () => {
+        forcingResume.value = false
+      }
     })
   }
 
@@ -47,38 +65,13 @@ export const usePlayer = createSharedComposable(() => {
     stream.value = s
   }
 
-  function pause() {
-    if (!playing.value) {
-      return
-    }
-    playing.value = false
-  }
-
-  function resume() {
-    if (playing.value) {
-      return
-    }
-    // TODO: put back to live
-    playing.value = true
-  }
-
-  function togglePlay() {
-    playing.value = !playing.value
-  }
-
-  function toggleMute() {
-    muted.value = !muted.value
-  }
-
   return {
-    playing,
     pending,
+    playing,
     volume,
     muted,
-    stream,
+    stream: readonly(stream),
     init,
     play,
-    togglePlay,
-    toggleMute,
   }
 })
