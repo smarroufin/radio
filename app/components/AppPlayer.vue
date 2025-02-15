@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const audioRef = useTemplateRef('audio')
-const { stream, playing, pending: playerPending, volume, muted, init: initPlayer, togglePlay, toggleMute, turnUpVolume, turnDownVolume } = usePlayer()
+const { stream, playing, pending: playerPending, volume, muted, init: initPlayer, togglePlay, toggleMute } = usePlayer()
 
 onMounted(() => {
   nextTick(() => {
@@ -13,8 +13,8 @@ const securedSrc = computed(() => stream.value?.url_resolved.replace('http://', 
 defineShortcuts({
   k: () => togglePlay(),
   m: () => toggleMute(),
-  arrowup: () => turnUpVolume(),
-  arrowdown: () => turnDownVolume(),
+  arrowup: () => volume.value = Math.min(1, volume.value + 0.05),
+  arrowdown: () => volume.value = Math.min(1, volume.value - 0.05),
 })
 </script>
 

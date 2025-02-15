@@ -70,14 +70,6 @@ export const usePlayer = createSharedComposable(() => {
     muted.value = !muted.value
   }
 
-  function turnUpVolume() {
-    volume.value = Math.min(1, volume.value + 0.05)
-  }
-
-  function turnDownVolume() {
-    volume.value = Math.max(0, volume.value - 0.05)
-  }
-
   return {
     playing,
     pending,
@@ -88,7 +80,5 @@ export const usePlayer = createSharedComposable(() => {
     play,
     togglePlay,
     toggleMute,
-    turnUpVolume,
-    turnDownVolume,
   }
 })
