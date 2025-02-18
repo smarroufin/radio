@@ -32,11 +32,11 @@ const tags = computed(() => {
           :country-code="stream.countrycode"
           class="flex-shrink-0"
         />
-        <span
+        <AppTag
           v-for="tag of tags"
           :key="tag"
-          class="bg-neutral-800 px-2 py-0.5 text-xs rounded-full whitespace-nowrap"
-        >{{ tag }}</span>
+          :tag="tag"
+        />
       </div>
     </div>
     <StreamPinButton :stream="stream" />

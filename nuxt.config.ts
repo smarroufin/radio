@@ -27,7 +27,7 @@ export default defineNuxtConfig({
   },
   ui: {
     theme: {
-      colors: ['primary', 'white', 'black'],
+      colors: ['primary', 'error', 'white', 'black'],
     },
   },
   srcDir: 'app',

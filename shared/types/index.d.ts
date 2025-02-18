@@ -37,3 +37,14 @@ declare interface RadioBrowserStream {
   geo_distance: unknown
   has_extended_info: boolean
 }
+
+declare interface RadioBrowserCountry {
+  name: string
+  iso_3166_1: string
+  stationcount: number
+}
+
+declare interface RadioBrowserTag {
+  name: string
+  stationcount: number
+}

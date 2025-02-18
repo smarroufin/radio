@@ -18,5 +18,16 @@ export default defineAppConfig({
         thumb: 'cursor-pointer',
       },
     },
+    tabs: {
+      slots: {
+        trigger: 'cursor-pointer',
+      },
+    },
+    selectMenu: {
+      slots: {
+        base: 'cursor-pointer',
+        item: 'cursor-pointer',
+      },
+    },
   },
 })
