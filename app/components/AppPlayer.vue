@@ -17,7 +17,7 @@ defineShortcuts({
   k: () => togglePlay(),
   m: () => toggleMute(),
   arrowup: () => volume.value = Math.min(1, volume.value + 0.05),
-  arrowdown: () => volume.value = Math.min(1, volume.value - 0.05),
+  arrowdown: () => volume.value = Math.max(0, volume.value - 0.05),
 })
 </script>
 
