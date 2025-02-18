@@ -19,6 +19,9 @@ const { data: popularStreams } = await useFetch('/api/streams/popular', {
 })
 
 const toast = useToast()
+const { streams: pinnedStreams, pending: pendingPins, fetch: fetchPinnedStream } = usePins()
+
+callOnce(() => fetchPinnedStream())
 
 const allCountriesOption = { label: 'All', value: '', code: '', icon: 'i-circle-flags-xx' }
 
@@ -173,6 +176,15 @@ async function search() {
               :stream="stream"
             />
           </div>
+          <div
+            v-else-if="searching"
+            class="flex justify-center py-2"
+          >
+            <UIcon
+              name="i-lucide-loader-circle"
+              class="animate-spin size-6"
+            />
+          </div>
           <span
             v-else-if="searchResults"
             class="block text-center font-medium py-2"
@@ -187,10 +199,31 @@ async function search() {
           </span>
         </template>
         <template #pins>
-          <div class="divide-y divide-neutral-900">
-            <!-- TODO: Pins feature -->
-            <span class="block text-center font-medium py-2">Coming soon...</span>
+          <div
+            v-if="pinnedStreams.length"
+            class="divide-y divide-neutral-900"
+          >
+            <StreamItem
+              v-for="stream in pinnedStreams.sort((a, b) => b.votes - a.votes)"
+              :key="stream.stationuuid"
+              :stream="stream"
+            />
           </div>
+          <div
+            v-else-if="pendingPins"
+            class="flex justify-center py-2"
+          >
+            <UIcon
+              name="i-lucide-loader-circle"
+              class="animate-spin size-6"
+            />
+          </div>
+          <span
+            v-else
+            class="block text-center font-medium py-2"
+          >
+            No pins yet
+          </span>
         </template>
       </UTabs>
     </UContainer>

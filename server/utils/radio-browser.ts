@@ -97,3 +97,19 @@ export async function searchRadioBrowserStreams(name?: string, country?: string,
     },
   })
 }
+
+export async function getRadioBrowserStreams(uuids: string[]) {
+  const baseURL = await getRadioBrowserBaseURL()
+  const headers = await getRadioBrowserHeaders()
+  return $fetch<RadioBrowserStream[]>('/stations/byuuid', {
+    baseURL,
+    headers,
+    query: {
+      hidebroken: true,
+      limit: 50,
+      order: 'votes',
+      reverse: true,
+      uuids: uuids.join(','),
+    },
+  })
+}
