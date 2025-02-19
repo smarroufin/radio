@@ -18,40 +18,13 @@ const { data: popularStreams } = await useFetch('/api/streams/popular', {
   default: () => [],
 })
 
-const toast = useToast()
+const { streams: searchedStreams, searching, query, country, tags, contriesOptions, tagsOptions, search } = useSearch({
+  metadata,
+  onSearchEnd: () => selectedTab.value = 'search',
+})
 const { streams: pinnedStreams, pending: pendingPins, fetch: fetchPinnedStream } = usePins()
 
-callOnce(() => fetchPinnedStream())
-
-const allCountriesOption = { label: 'All', value: '', code: '', icon: 'i-circle-flags-xx' }
-
 const selectedTab = ref('popular')
-const query = ref('')
-const country = ref(allCountriesOption)
-const tags = ref<(typeof tagsOptions)['value']>([])
-const searching = ref(false)
-const searchResults = ref<RadioBrowserStream[] | null>(null)
-
-const contriesOptions = computed(() => {
-  const options = metadata.value.countries
-    .map(country => ({
-      value: country.name,
-      label: country.name,
-      code: country.iso_3166_1,
-      icon: `i-circle-flags-${country.iso_3166_1.toLocaleLowerCase() || 'xx'}`,
-    }))
-    .sort((a, b) => a.value.localeCompare(b.value))
-  options.unshift(allCountriesOption)
-  return options
-})
-const tagsOptions = computed(() => {
-  return metadata.value.tags
-    .map(tag => ({
-      value: tag.name,
-      label: tag.name,
-    }))
-    .sort((a, b) => a.value.localeCompare(b.value))
-})
 
 const tabs = computed(() => [
   { label: 'Popular', icon: 'i-carbon-fire', value: 'popular', slot: 'popular' },
@@ -59,35 +32,14 @@ const tabs = computed(() => [
   { label: 'Pins', icon: 'i-carbon-pin', value: 'pins', slot: 'pins' },
 ])
 
-async function search() {
-  searching.value = true
-
-  await $fetch('/api/streams/search', {
-    query: {
-      name: query.value || undefined,
-      country: country.value?.value || undefined,
-      tags: tags.value?.length ? tags.value.map(tag => tag.value) : undefined,
-    },
-  })
-    .then((streams) => {
-      searchResults.value = streams
-      selectedTab.value = 'search'
-    })
-    .catch(() => {
-      toast.add({
-        color: 'error',
-        title: 'Something went wrong',
-      })
-    })
-
-  searching.value = false
-}
+callOnce(() => fetchPinnedStream())
 </script>
 
 <template>
   <UApp>
-    <NuxtLoadingIndicator color="#FD9A00" />
+    <NuxtLoadingIndicator color="#FF6900" />
     <AppHeader />
+
     <UContainer
       as="main"
       class="min-h-[calc(100vh-var(--ui-header-height))] w-full py-4"
@@ -152,82 +104,74 @@ async function search() {
           </USelectMenu>
         </div>
       </form>
+
       <UTabs
         v-model="selectedTab"
         :items="tabs"
-        :ui="{ label: 'sr-only sm:not-sr-only' }"
+        :ui="{
+          label: 'sr-only sm:not-sr-only',
+          content: 'flex flex-col items-center divide-y divide-neutral-900',
+        }"
       >
         <template #popular>
-          <div class="divide-y divide-neutral-900">
-            <StreamItem
-              v-for="stream in popularStreams"
-              :key="stream.stationuuid"
-              :stream="stream"
-            />
-          </div>
+          <StreamItem
+            v-for="stream in popularStreams"
+            :key="stream.stationuuid"
+            :stream="stream"
+            class="w-full"
+          />
         </template>
         <template #search>
-          <div
-            v-if="searchResults?.length"
-            class="divide-y divide-neutral-900"
-          >
+          <template v-if="searchedStreams?.length">
             <StreamItem
-              v-for="stream in searchResults"
+              v-for="stream in searchedStreams"
               :key="stream.stationuuid"
               :stream="stream"
+              class="w-full"
             />
-          </div>
-          <div
+          </template>
+          <UIcon
             v-else-if="searching"
-            class="flex justify-center py-2"
-          >
-            <UIcon
-              name="i-lucide-loader-circle"
-              class="animate-spin size-6"
-            />
-          </div>
+            name="i-lucide-loader-circle"
+            class="animate-spin size-6"
+          />
           <span
-            v-else-if="searchResults"
-            class="block text-center font-medium py-2"
+            v-else-if="searchedStreams"
+            class="font-medium"
           >
             No results found
           </span>
           <span
             v-else
-            class="block text-center font-medium py-2"
+            class="font-medium"
           >
-            Search for something &#x1F446;
+            Search for something
           </span>
         </template>
         <template #pins>
-          <div
-            v-if="pinnedStreams.length"
-            class="divide-y divide-neutral-900"
-          >
+          <template v-if="pinnedStreams.length">
             <StreamItem
               v-for="stream in pinnedStreams.sort((a, b) => b.votes - a.votes)"
               :key="stream.stationuuid"
               :stream="stream"
+              class="w-full"
             />
-          </div>
-          <div
+          </template>
+          <UIcon
             v-else-if="pendingPins"
-            class="flex justify-center py-2"
-          >
-            <UIcon
-              name="i-lucide-loader-circle"
-              class="animate-spin size-6"
-            />
-          </div>
+            name="i-lucide-loader-circle"
+            class="animate-spin size-6"
+          />
           <span
             v-else
-            class="block text-center font-medium py-2"
+            class="font-medium"
           >
             No pins yet
           </span>
         </template>
       </UTabs>
     </UContainer>
+
     <AppFooter />
 
     <ClientOnly>
