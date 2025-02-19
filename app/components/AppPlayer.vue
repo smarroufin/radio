@@ -1,6 +1,7 @@
 <script setup lang="ts">
-const audioRef = useTemplateRef('audio')
 const { stream, playing, pending: playerPending, volume, muted, init: initPlayer } = usePlayer()
+
+const audioRef = useTemplateRef('audio')
 
 onMounted(() => {
   nextTick(() => {
@@ -28,22 +29,20 @@ defineShortcuts({
         <span class="text-sm font-medium truncate">{{ stream?.name || 'No stream selected' }}</span>
       </div>
 
-      <div>
-        <UTooltip
-          :text="playing ? 'Pause' : 'Play'"
-          :kbds="['K']"
-        >
-          <UButton
-            :icon="playing ? 'i-carbon-pause' : 'i-carbon-play'"
-            :aria-label="playing ? 'Pause' : 'Play'"
-            :loading="playerPending"
-            :disabled="!stream"
-            size="xl"
-            :ui="{ base: 'rounded-full' }"
-            @click="togglePlay()"
-          />
-        </UTooltip>
-      </div>
+      <UTooltip
+        :text="playing ? 'Pause' : 'Play'"
+        :kbds="['K']"
+      >
+        <UButton
+          :icon="playing ? 'i-carbon-pause' : 'i-carbon-play'"
+          :aria-label="playing ? 'Pause' : 'Play'"
+          :loading="playerPending"
+          :disabled="!stream"
+          size="xl"
+          :ui="{ base: 'rounded-full' }"
+          @click="togglePlay()"
+        />
+      </UTooltip>
 
       <div class="flex-1 min-w-0 flex items-center gap-2">
         <UTooltip

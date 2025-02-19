@@ -6,11 +6,9 @@ const props = defineProps({
   },
 })
 
-const { stream: playerStream, playing, pending, play } = usePlayer()
+const { stream: currentStream, playing, pending, play } = usePlayer()
 
-const isCurrentStream = computed(() => {
-  return playerStream.value?.url_resolved === props.stream.url_resolved
-})
+const isCurrentStream = computed(() => currentStream.value?.url_resolved === props.stream.url_resolved)
 
 function togglePlay() {
   if (!isCurrentStream.value) {

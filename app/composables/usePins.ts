@@ -35,10 +35,22 @@ export const usePins = () => {
     pending.value = false
   }
 
+  function pin(stream: RadioBrowserStream) {
+    pins.value.add(stream.stationuuid)
+    streams.value.push(stream)
+  }
+
+  function unpin(stream: RadioBrowserStream) {
+    pins.value.delete(stream.stationuuid)
+    streams.value = streams.value.filter(s => s.stationuuid !== stream.stationuuid)
+  }
+
   return {
     pins,
     streams,
     pending,
     fetch,
+    pin,
+    unpin,
   }
 }

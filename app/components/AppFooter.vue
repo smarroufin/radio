@@ -1,7 +1,7 @@
 <template>
   <UContainer
     as="footer"
-    class="flex items-center justify-center h-12 bg-neutral-950"
+    class="flex items-center justify-center h-12"
   >
     <span class="text-sm">
       Powered by
