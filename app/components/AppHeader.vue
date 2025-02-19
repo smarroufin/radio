@@ -15,8 +15,8 @@
       to="https://github.com/smarroufin/radio"
       aria-label="Open on GitHub"
       target="_blank"
-      color="white"
-      variant="link"
+      color="neutral"
+      variant="ghost"
       icon="i-simple-icons-github"
     />
   </UContainer>
