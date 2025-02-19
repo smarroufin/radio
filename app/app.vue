@@ -112,6 +112,7 @@ async function search() {
               :loading="searching"
               size="sm"
               :ui="{ base: 'rounded-full' }"
+              aria-label="Search"
               type="submit"
             />
           </template>
@@ -154,7 +155,7 @@ async function search() {
       <UTabs
         v-model="selectedTab"
         :items="tabs"
-        :ui="{ label: 'hidden sm:inline' }"
+        :ui="{ label: 'sr-only sm:not-sr-only' }"
       >
         <template #popular>
           <div class="divide-y divide-neutral-900">
