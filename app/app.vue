@@ -93,7 +93,7 @@ callOnce(() => fetchPinnedStream())
           >
             <div
               v-if="tags.length"
-              class="overflow-hidden space-x-1"
+              class="flex overflow-hidden gap-1"
             >
               <AppTag
                 v-for="{ label: tag } of tags"

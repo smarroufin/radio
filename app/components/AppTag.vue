@@ -27,7 +27,7 @@ function onTagClick() {
 
 <template>
   <button
-    class="inline-flex items-center gap-0.5 bg-neutral-800 px-2 py-0.5 rounded-full cursor-pointer"
+    class="flex items-center gap-0.5 bg-neutral-800 px-2 py-0.5 rounded-full cursor-pointer"
     @click.stop="onTagClick"
   >
     <span class="text-xs whitespace-nowrap">
