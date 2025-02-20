@@ -29,7 +29,7 @@ const selectedTab = ref('popular')
 const tabs = computed(() => [
   { label: 'Popular', icon: 'i-carbon-fire', value: 'popular', slot: 'popular' },
   { label: 'Search Results', icon: 'i-carbon-search', value: 'search', slot: 'search' },
-  { label: 'Pins', icon: 'i-carbon-pin', value: 'pins', slot: 'pins' },
+  { label: 'Favorites', icon: 'i-carbon-star', value: 'pins', slot: 'pins' },
 ])
 
 callOnce(() => fetchPinnedStream())
