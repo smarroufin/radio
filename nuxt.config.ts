@@ -41,9 +41,4 @@ export default defineNuxtConfig({
       stylistic: true,
     },
   },
-  icon: {
-    // Workaround: enabled fetch for circle-flags
-    // FIXME: only fetch for circle-flags collection
-    provider: 'iconify',
-  },
 })
