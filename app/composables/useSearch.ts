@@ -2,39 +2,43 @@ export const useSearch = ({
   metadata,
   onSearchEnd,
 }: {
-  metadata: Ref<{ countries: RadioBrowserCountry[], tags: RadioBrowserTag[] }>
+  metadata?: Ref<{ countries: RadioBrowserCountry[], tags: RadioBrowserTag[] }>
   onSearchEnd?: () => void
-}) => {
+} = {}) => {
   const toast = useToast()
 
   const allCountriesOption = { label: 'All', value: '', code: '', icon: 'i-circle-flags-xx' }
 
-  const query = ref('')
-  const country = ref(allCountriesOption)
-  const tags = ref<{ label: string, value: string }[]>([])
-  const searching = ref(false)
-  const streams = ref<RadioBrowserStream[] | null>(null)
+  const query = useState('radio-search-query', () => '')
+  const country = useState('radio-search-country', () => allCountriesOption)
+  const _tags = useState<Set<string>>('radio-search-tags', () => new Set())
+  const tags = computed({
+    get: () => Array.from(_tags.value.values()).map(t => ({ label: t, value: t })),
+    set: value => _tags.value = new Set(value.map(t => t.label)),
+  })
+  const searching = useState('radio-search-searching', () => false)
+  const streams = useState<RadioBrowserStream[] | null>('radio-search-streams', () => null)
 
   const contriesOptions = computed(() => {
-    const options = metadata.value.countries
+    const options = metadata?.value.countries
       .map(country => ({
         value: country.name,
         label: country.name,
         code: country.iso_3166_1,
         icon: `i-circle-flags-${country.iso_3166_1.toLocaleLowerCase() || 'xx'}`,
       }))
-      .sort((a, b) => a.value.localeCompare(b.value))
+      .sort((a, b) => a.value.localeCompare(b.value)) || []
     options.unshift(allCountriesOption)
     return options
   })
 
   const tagsOptions = computed(() => {
-    return metadata.value.tags
+    return metadata?.value.tags
       .map(tag => ({
         value: tag.name,
         label: tag.name,
       }))
-      .sort((a, b) => a.value.localeCompare(b.value))
+      .sort((a, b) => a.value.localeCompare(b.value)) || []
   })
 
   async function search() {
@@ -61,6 +65,14 @@ export const useSearch = ({
     searching.value = false
   }
 
+  function addTag(tag: string) {
+    _tags.value.add(tag)
+  }
+
+  function deleteTag(tag: string) {
+    _tags.value.delete(tag)
+  }
+
   return {
     query,
     country,
@@ -70,5 +82,7 @@ export const useSearch = ({
     contriesOptions,
     tagsOptions,
     search,
+    addTag,
+    deleteTag,
   }
 }

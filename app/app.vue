@@ -99,6 +99,7 @@ callOnce(() => fetchPinnedStream())
                 v-for="{ label: tag } of tags"
                 :key="tag"
                 :tag="tag"
+                mode="remove"
               />
             </div>
           </USelectMenu>

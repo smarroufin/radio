@@ -36,6 +36,7 @@ const tags = computed(() => {
           v-for="tag of tags"
           :key="tag"
           :tag="tag"
+          mode="add"
         />
       </div>
     </div>
