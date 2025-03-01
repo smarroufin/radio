@@ -167,7 +167,7 @@ callOnce(() => fetchPinnedStream())
             v-else
             class="font-medium"
           >
-            No pins yet
+            No favorites yet
           </span>
         </template>
       </UTabs>
