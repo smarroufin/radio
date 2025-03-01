@@ -13,21 +13,20 @@ export const useSearch = ({
   const country = useState('radio-search-country', () => allCountriesOption)
   const _tags = useState<Set<string>>('radio-search-tags', () => new Set())
   const tags = computed({
-    get: () => Array.from(_tags.value.values()).map(t => ({ label: t, value: t })),
+    get: () => Array.from(_tags.value.values()).map(t => ({ label: t })),
     set: value => _tags.value = new Set(value.map(t => t.label)),
   })
   const searching = useState('radio-search-searching', () => false)
   const streams = useState<RadioBrowserStream[] | null>('radio-search-streams', () => null)
 
-  const contriesOptions = computed(() => {
+  const countriesOptions = computed(() => {
     const options = metadata?.value.countries
       .map(country => ({
         value: country.name,
         label: country.name,
         code: country.iso_3166_1,
         icon: `i-circle-flags-${country.iso_3166_1.toLocaleLowerCase() || 'xx'}`,
-      }))
-      .sort((a, b) => a.value.localeCompare(b.value)) || []
+      })) || []
     options.unshift(allCountriesOption)
     return options
   })
@@ -35,10 +34,8 @@ export const useSearch = ({
   const tagsOptions = computed(() => {
     return metadata?.value.tags
       .map(tag => ({
-        value: tag.name,
         label: tag.name,
-      }))
-      .sort((a, b) => a.value.localeCompare(b.value)) || []
+      })) || []
   })
 
   async function search() {
@@ -48,7 +45,7 @@ export const useSearch = ({
       query: {
         name: query.value || undefined,
         country: country.value?.value || undefined,
-        tags: tags.value?.length ? tags.value.map(tag => tag.value) : undefined,
+        tags: tags.value?.length ? tags.value.map(tag => tag.label) : undefined,
       },
     })
       .then((value) => {
@@ -79,7 +76,7 @@ export const useSearch = ({
     tags,
     searching,
     streams,
-    contriesOptions,
+    countriesOptions,
     tagsOptions,
     search,
     addTag,

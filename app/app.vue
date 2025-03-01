@@ -18,13 +18,13 @@ const { data: popularStreams } = await useFetch('/api/streams/popular', {
   default: () => [],
 })
 
-const { streams: searchedStreams, searching, query, country, tags, contriesOptions, tagsOptions, search } = useSearch({
+const { streams: searchedStreams, searching, query, country, tags, countriesOptions, tagsOptions, search } = useSearch({
   metadata,
   onSearchEnd: () => selectedTab.value = 'search',
 })
 const { streams: pinnedStreams, pending: pendingPins, fetch: fetchPinnedStream } = usePins()
 
-const selectedTab = ref('popular')
+const selectedTab = ref<string | number>('popular')
 
 const tabs = computed(() => [
   { label: 'Popular', icon: 'i-carbon-fire', value: 'popular', slot: 'popular' },
@@ -70,39 +70,18 @@ callOnce(() => fetchPinnedStream())
           </template>
         </UInput>
         <div class="flex flex-col sm:flex-row items-stretch gap-2">
-          <USelectMenu
+          <AppSearchCountrySelect
             v-model="country"
-            :icon="country?.icon"
-            :items="contriesOptions"
-            search-input
-            :filter-fields="['label', 'code']"
-            placeholder="Country"
+            :items="countriesOptions"
             :disabled="searching"
-            :ui="{ base: 'rounded-full' }"
             class="sm:w-48"
           />
-          <USelectMenu
+          <AppSearchTagsSelect
             v-model="tags"
-            multiple
             :items="tagsOptions"
-            search-input
-            placeholder="Tags"
             :disabled="searching"
-            :ui="{ base: 'rounded-full' }"
             class="sm:flex-1"
-          >
-            <div
-              v-if="tags.length"
-              class="flex overflow-hidden gap-1"
-            >
-              <AppTag
-                v-for="{ label: tag } of tags"
-                :key="tag"
-                :tag="tag"
-                mode="remove"
-              />
-            </div>
-          </USelectMenu>
+          />
         </div>
       </form>
 
