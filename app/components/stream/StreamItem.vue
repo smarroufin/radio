@@ -6,6 +6,8 @@ const props = defineProps({
   },
 })
 
+const favicon = computed(() => props.stream.favicon?.replace('http://', 'https://') || '')
+
 const tags = computed(() => {
   return props.stream.tags.split(',').map(tag => tag.trim()).filter(tag => !!tag)
 })
@@ -14,7 +16,7 @@ const tags = computed(() => {
 <template>
   <div class="flex items-center gap-2 py-3">
     <UAvatar
-      :src="stream.favicon"
+      :src="favicon"
       :alt="stream.name[0]"
       width="52"
       height="52"
