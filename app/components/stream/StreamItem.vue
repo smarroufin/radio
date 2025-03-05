@@ -12,8 +12,16 @@ const tags = computed(() => {
 </script>
 
 <template>
-  <div class="flex items-center gap-2 py-1">
-    <div class="flex-1 min-w-0 flex flex-col gap-1">
+  <div class="flex items-center gap-2 py-3">
+    <UAvatar
+      :src="stream.favicon"
+      :alt="stream.name[0]"
+      width="52"
+      height="52"
+      class="mr-2 rounded-full size-13"
+      size="3xl"
+    />
+    <div class="flex-1 min-w-0 flex flex-col gap-2">
       <div class="flex items-center gap-2">
         <span class="flex-shrink font-medium truncate">{{ stream.name }}</span>
         <UButton
