@@ -91,6 +91,8 @@ callOnce(() => fetchPinnedStream())
         :ui="{
           label: 'sr-only sm:not-sr-only',
           content: 'flex flex-col items-center divide-y divide-neutral-900',
+          indicator: 'rounded-full',
+          list: 'rounded-full',
         }"
       >
         <template #popular>
