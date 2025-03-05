@@ -2,7 +2,7 @@
 @import "@nuxt/ui";
 
 @theme static {
-  --font-family-sans: 'Open Sans', sans-serif;
+  --font-sans: 'Open Sans', sans-serif;
 }
 
 :root {
