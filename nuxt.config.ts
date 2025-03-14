@@ -38,6 +38,11 @@ export default defineNuxtConfig({
     compatibilityVersion: 4,
   },
   compatibilityDate: '2024-11-01',
+  nitro: {
+    prerender: {
+      routes: ['/'],
+    },
+  },
   eslint: {
     config: {
       stylistic: true,
@@ -75,6 +80,9 @@ export default defineNuxtConfig({
           purpose: 'maskable',
         },
       ],
+    },
+    workbox: {
+      globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
     },
     devOptions: {
       enabled: import.meta.dev,
