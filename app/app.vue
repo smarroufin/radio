@@ -37,6 +37,7 @@ callOnce(() => fetchPinnedStream())
 
 <template>
   <UApp>
+    <NuxtPwaManifest />
     <NuxtLoadingIndicator color="#FF6900" />
     <AppHeader />
 
