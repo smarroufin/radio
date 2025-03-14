@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@nuxt/image',
     '@vueuse/nuxt',
+    '@vite-pwa/nuxt',
   ],
   devtools: { enabled: true },
   app: {
@@ -17,7 +18,8 @@ export default defineNuxtConfig({
         { name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'icon', href: '/favicon.ico' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon-180x180.png' },
       ],
     },
   },
@@ -39,6 +41,43 @@ export default defineNuxtConfig({
   eslint: {
     config: {
       stylistic: true,
+    },
+  },
+  pwa: {
+    registerType: 'autoUpdate',
+    injectRegister: 'auto',
+    strategies: 'generateSW',
+    manifest: {
+      name: 'Radio',
+      short_name: 'Radio',
+      description: 'An open-source radio player',
+      theme_color: '#0c0a09',
+      icons: [
+        {
+          src: 'pwa-64x64.png',
+          sizes: '64x64',
+          type: 'image/png',
+        },
+        {
+          src: 'pwa-192x192.png',
+          sizes: '192x192',
+          type: 'image/png',
+        },
+        {
+          src: 'pwa-512x512.png',
+          sizes: '512x512',
+          type: 'image/png',
+        },
+        {
+          src: 'maskable-icon-512x512.png',
+          sizes: '512x512',
+          type: 'image/png',
+          purpose: 'maskable',
+        },
+      ],
+    },
+    devOptions: {
+      enabled: import.meta.dev,
     },
   },
 })

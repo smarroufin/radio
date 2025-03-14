@@ -16,6 +16,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "typecheck": "nuxt typecheck",
+    "generate-pwa-assets": "pwa-assets-generator --preset minimal-2023 public/logo.png",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
@@ -33,6 +34,8 @@
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.2.0",
+    "@vite-pwa/assets-generator": "^0.2.6",
+    "@vite-pwa/nuxt": "^0.10.6",
     "eslint": "^9.22.0",
     "typescript": "^5.8.2",
     "vue-tsc": "^2.2.8"
