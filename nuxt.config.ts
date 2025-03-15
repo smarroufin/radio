@@ -56,7 +56,7 @@ export default defineNuxtConfig({
       name: 'Radio',
       short_name: 'Radio',
       description: 'An open-source radio player',
-      theme_color: '#FF6900',
+      theme_color: '#FF8904',
       background_color: '#0C0A09',
       icons: [
         {
