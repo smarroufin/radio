@@ -16,7 +16,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "typecheck": "nuxt typecheck",
-    "generate-pwa-assets": "pwa-assets-generator --preset minimal-2023 public/logo.png",
+    "generate-pwa-assets": "pwa-assets-generator",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
