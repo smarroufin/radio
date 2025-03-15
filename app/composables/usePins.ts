@@ -5,6 +5,8 @@ export const usePins = () => {
     default: () => new Set(),
     decode: (v: string) => new Set(v ? JSON.parse(v) : []),
     encode: (v: Set<string>) => JSON.stringify(Array.from(v)),
+    // FIXME: stop using cookies for storing pins
+    maxAge: 60 * 60 * 24 * 365,
   })
   const streams = useState<RadioBrowserStream[]>('radio-pinned-streams', () => [])
   const pending = ref(false)
