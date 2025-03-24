@@ -157,8 +157,6 @@ callOnce(() => fetchPinnedStream())
 
     <AppFooter />
 
-    <ClientOnly>
-      <AppPlayer />
-    </ClientOnly>
+    <AppPlayer />
   </UApp>
 </template>

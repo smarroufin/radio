@@ -7,6 +7,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@vite-pwa/nuxt',
   ],
+  ssr: false,
   devtools: { enabled: true },
   app: {
     head: {
