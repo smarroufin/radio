@@ -49,6 +49,13 @@ export default defineNuxtConfig({
       stylistic: true,
     },
   },
+  icon: {
+    clientBundle: {
+      // fixes a bug where loading icon of a UButton would not be correct after first load of app
+      // https://github.com/nuxt/ui/issues/3840
+      scan: true,
+    },
+  },
   pwa: {
     registerType: 'autoUpdate',
     injectRegister: 'auto',
