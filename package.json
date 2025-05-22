@@ -22,35 +22,37 @@
   "dependencies": {
     "@iconify-json/carbon": "^1.2.8",
     "@iconify-json/circle-flags": "^1.2.6",
-    "@iconify-json/lucide": "^1.2.32",
-    "@iconify-json/simple-icons": "^1.2.29",
-    "@nuxt/fonts": "^0.11.0",
+    "@iconify-json/lucide": "^1.2.44",
+    "@iconify-json/simple-icons": "^1.2.35",
+    "@nuxt/fonts": "^0.11.4",
     "@nuxt/image": "^1.10.0",
-    "@nuxt/ui": "3.0.1",
-    "@vueuse/core": "^13.0.0",
-    "@vueuse/nuxt": "^13.0.0",
-    "nuxt": "^3.16.1",
-    "tailwindcss": "^4.0.15",
-    "zod": "^3.24.2"
+    "@nuxt/ui": "3.1.2",
+    "@vueuse/core": "^13.2.0",
+    "@vueuse/nuxt": "^13.2.0",
+    "nuxt": "^3.17.4",
+    "tailwindcss": "^4.1.7",
+    "zod": "^3.25.20"
   },
   "devDependencies": {
-    "@nuxt/eslint": "^1.2.0",
-    "@vite-pwa/assets-generator": "^0.2.6",
-    "@vite-pwa/nuxt": "^0.10.6",
-    "eslint": "^9.23.0",
-    "typescript": "^5.8.2",
-    "vue-tsc": "^2.2.8"
+    "@nuxt/eslint": "^1.4.1",
+    "@vite-pwa/assets-generator": "^1.0.0",
+    "@vite-pwa/nuxt": "^1.0.1",
+    "eslint": "^9.27.0",
+    "typescript": "^5.8.3",
+    "vue-tsc": "^2.2.10"
   },
   "volta": {
     "node": "22.12.0",
-    "pnpm": "10.6.5"
+    "pnpm": "10.11.0"
   },
-  "packageManager": "pnpm@10.6.5",
+  "packageManager": "pnpm@10.11.0",
   "pnpm": {
     "onlyBuiltDependencies": [
       "@parcel/watcher",
+      "@tailwindcss/oxide",
       "esbuild",
       "sharp",
+      "unrs-resolver",
       "vue-demi"
     ]
   }

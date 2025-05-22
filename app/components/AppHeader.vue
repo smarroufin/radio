@@ -4,7 +4,7 @@
     class="flex items-center justify-between h-12"
   >
     <NuxtImg
-      src="/logo.png"
+      src="/logo-white.svg"
       alt="logo"
       width="32"
       height="32"
