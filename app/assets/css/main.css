@@ -12,8 +12,6 @@
 
   --ui-text: var(--color-black);
   --ui-bg: var(--color-neutral-50);
-
-  --ui-radius: var(--radius-sm);
 }
 
 .dark {
