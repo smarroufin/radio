@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { stream: currentStream } = usePlayer()
+const { stream: currentStream, playing } = usePlayer()
 const title = computed(() => {
   return currentStream.value?.name || 'Radio'
 })
@@ -33,6 +33,19 @@ const tabs = computed(() => [
 ])
 
 callOnce(() => fetchPinnedStream())
+
+onMounted(() => {
+  // Confirm when closing tab while playing music
+  // https://stackoverflow.com/a/61404006/3926832
+  useEventListener('beforeunload', (e) => {
+    if (playing.value) {
+      e.preventDefault()
+      e.returnValue = ''
+      return
+    }
+    delete e['returnValue']
+  })
+})
 </script>
 
 <template>
