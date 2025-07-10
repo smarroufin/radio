@@ -104,7 +104,7 @@ onMounted(() => {
         :items="tabs"
         :ui="{
           label: 'sr-only sm:not-sr-only',
-          content: 'flex flex-col items-center divide-y divide-neutral-900',
+          content: 'flex flex-col items-center divide-y divide-(--ui-border)',
           indicator: 'rounded-full',
           list: 'rounded-full',
         }"

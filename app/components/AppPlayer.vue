@@ -23,7 +23,7 @@ defineShortcuts({
 </script>
 
 <template>
-  <nav class="sticky bottom-0 z-50 bg-neutral-950 border-t border-neutral-900">
+  <nav class="sticky bottom-0 z-50 bg-(--ui-bg) border-t border-(--ui-border)">
     <UContainer class="flex items-center gap-2 h-12">
       <div class="flex-1 min-w-0 flex justify-end">
         <span class="text-sm font-medium truncate">{{ stream?.name || 'No stream selected' }}</span>
