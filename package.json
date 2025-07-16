@@ -15,7 +15,7 @@
     "start": "node .output/server/index.mjs",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "typecheck": "nuxt typecheck",
+    "typecheck": "vue-tsc -b --noEmit",
     "generate-pwa-assets": "pwa-assets-generator",
     "postinstall": "nuxt prepare"
   },
