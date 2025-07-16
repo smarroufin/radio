@@ -28,9 +28,9 @@
     "@nuxt/ui": "3.2.0",
     "@vueuse/core": "^13.5.0",
     "@vueuse/nuxt": "^13.5.0",
-    "nuxt": "^3.17.7",
+    "nuxt": "^4.0.0",
     "tailwindcss": "^4.1.11",
-    "zod": "^3.25.76"
+    "zod": "^4.0.5"
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.5.2",
@@ -38,7 +38,7 @@
     "@vite-pwa/nuxt": "^1.0.4",
     "eslint": "^9.31.0",
     "typescript": "^5.8.3",
-    "vue-tsc": "^2.2.12"
+    "vue-tsc": "^3.0.1"
   },
   "volta": {
     "node": "22.16.0"
