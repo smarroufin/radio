@@ -1,4 +1,4 @@
-export const usePins = () => {
+export const usePins = createSharedComposable(() => {
   const toast = useToast()
 
   const pins = useLocalStorage<Set<string>>('radio-pins', () => new Set(), {
@@ -7,8 +7,8 @@ export const usePins = () => {
       write: (v: Set<string>) => JSON.stringify(Array.from(v)),
     },
   })
-  const streams = useState<RadioBrowserStream[]>('radio-pinned-streams', () => [])
-  const pending = useState('radio-pins-pending', () => false)
+  const streams = ref<RadioBrowserStream[]>([])
+  const pending = ref(false)
 
   async function fetch() {
     if (!pins.value.size) {
@@ -54,4 +54,4 @@ export const usePins = () => {
     pin,
     unpin,
   }
-}
+})
