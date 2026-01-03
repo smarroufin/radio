@@ -3,22 +3,18 @@
     as="header"
     class="flex items-center justify-between h-12"
   >
-    <NuxtImg
+    <img
       src="/logo.svg"
       alt="logo"
-      width="32"
-      height="32"
       loading="lazy"
-      class="dark:hidden"
-    />
-    <NuxtImg
+      class="size-8 dark:hidden"
+    >
+    <img
       src="/logo-white.svg"
       alt="logo"
-      width="32"
-      height="32"
       loading="lazy"
-      class="hidden dark:block"
-    />
+      class="size-8 hidden dark:block"
+    >
 
     <div class="flex items-center gap-2">
       <AppColorModeToggle />
