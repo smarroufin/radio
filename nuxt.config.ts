@@ -34,6 +34,7 @@ export default defineNuxtConfig({
   },
   srcDir: 'app',
   serverDir: 'server',
+  compatibilityDate: '2026-01-03',
   nitro: {
     prerender: {
       routes: ['/'],
