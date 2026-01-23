@@ -26,6 +26,10 @@ const tags = computed(() => {
     <div class="flex-1 min-w-0 flex flex-col gap-2">
       <div class="flex items-center gap-2">
         <span class="flex-shrink font-medium truncate">{{ stream.name }}</span>
+        <StreamVotesIndicator
+          :votes="stream.votes"
+          class="flex-shrink-0"
+        />
         <UButton
           icon="i-carbon-launch"
           variant="link"
