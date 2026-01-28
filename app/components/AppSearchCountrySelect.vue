@@ -35,6 +35,7 @@ const items = computed(() => searchItems(props.items, searchTerm.value, ['label'
     v-model:search-term="searchTerm"
     :icon="value?.icon"
     :items="items"
+    virtualize
     search-input
     ignore-filter
     placeholder="Country"

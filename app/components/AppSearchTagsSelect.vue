@@ -33,6 +33,7 @@ const items = computed(() => searchItems(props.items, searchTerm.value, ['label'
     v-model:search-term="searchTerm"
     multiple
     :items="items"
+    virtualize
     search-input
     ignore-filter
     placeholder="Tags"

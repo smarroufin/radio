@@ -1,4 +1,4 @@
-export function searchItems<T>(items: T[], searchTerm: string, searchFields: (keyof T)[], limit = 50): T[] {
+export function searchItems<T>(items: T[], searchTerm: string, searchFields: (keyof T)[]): T[] {
   let result = items
 
   if (searchTerm) {
@@ -16,5 +16,5 @@ export function searchItems<T>(items: T[], searchTerm: string, searchFields: (ke
     })
   }
 
-  return result.slice(0, limit)
+  return result
 }
